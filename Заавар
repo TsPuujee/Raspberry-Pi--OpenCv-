@@ -1,0 +1,130 @@
+Заавар RaspberryPi3 opencv санг суулгах
+
+Урдчилан хийх тохиргоо
+Terminal-г нээнэ.
+	sudo raspi-config
+ 
+	1 Expand Filesystem
+	3 Boot Options - "B1 Console"
+	4 Internationalization Options - U.S. keyboard
+
+Finish сонгоно дараа нь "Would you like to reboot?"  асуулт гарч ирнэ "Yes" дарж үргэлжлүүлнэ.
+
+Нэвтэрч орно 
+	username: pi 
+	password: raspberry
+	
+	startx
+
+Дараа нь сүлжээнд холбогдоно
+
+Terminal-г нээж 
+	hostname -I  
+	гарч ирсэн IP бичиж авна
+
+PuTTY татаж авч суулгана http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+
+PuTTY нээж дараах тохиргоог хийнэ.
+-бичиж авсан IP хаягаа Hostname хэсэгч бичнэ
+-Terminal -> Bell -> None (bell disabled)
+-Connection -> Seconds between keepalives ->"30"
+-Connection -> expand SSH -> X11 ->  "Enable X11 forwarding"
+
+
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install libopencv-dev python-opencv
+
+# OpenCV сан суусан эсэхийг шалгаж байна.
+
+python
+>>> import cv2
+>>> cv2.__version__        #"2.4.9" 
+
+cd ~
+
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install python-numpy python-scipy python-matplotlib
+
+sudo apt-get install build-essential cmake pkg-config
+
+sudo apt-get install default-jdk ant
+
+sudo apt-get install libgtkglext1-dev
+
+sudo apt-get install v4l-utils
+
+sudo apt-get install libjpeg8 \
+libjpeg8-dev \
+libjpeg8-dbg \
+libjpeg-progs \
+libavcodec-dev \
+libavformat-dev \
+libgstreamer0.10-0-dbg \
+libgstreamer0.10-0 \
+libgstreamer0.10-dev \
+libxine2-dev \
+libunicap2 \
+libunicap2-dev \
+swig \
+libv4l-0 \
+libv4l-dev \
+python-numpy \
+libpython2.7 \
+python-dev \
+python2.7-dev \
+libgtk2.0-dev \
+libjasper-dev \
+libpng12-dev \
+libswscale-dev
+
+wget http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/3.0.0/opencv-3.0.0.zip
+
+unzip opencv-3.0.0.zip
+
+cd opencv-3.0.0
+
+mkdir build
+
+cd build
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+-D INSTALL_C_EXAMPLES=ON \
+-D INSTALL_PYTHON_EXAMPLES=ON \
+-D BUILD_EXAMPLES=ON \
+-D CMAKE_INSTALL_PREFIX=/usr/local \
+-D WITH_V4L=ON ..
+
+sudo make            
+
+sudo make install
+
+sudo nano /etc/ld.so.conf.d/opencv.conf
+
+
+
+/usr/local/lib          
+
+sudo ldconfig
+
+sudo nano /etc/bash.bashrc
+
+
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig       
+export PKG_CONFIG_PATH                          
+
+# bash.bashrc хадгалаад restart хийнэ.
+
+sudo shutdown -r now
+
+
+python                      
+>>> import cv2
+>>> cv2.__version__ '3.0.0' 
+
+
+
+
