@@ -44,6 +44,8 @@ python
 
 cd ~
 
+Хэрэг болох сангуудийг суулгана.
+
 sudo apt-get update
 sudo apt-get upgrade
 
@@ -81,22 +83,31 @@ libjasper-dev \
 libpng12-dev \
 libswscale-dev
 
+Одоо OpenCV сангаа татаж авна.
+
 wget http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/3.0.0/opencv-3.0.0.zip
 
+Задлана.
 unzip opencv-3.0.0.zip
 
+Хавтасруу орно.
 cd opencv-3.0.0
 
+Build хавтас үүсгэнэ.
 mkdir build
+
 
 cd build
 
+
+Суулгах
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D INSTALL_C_EXAMPLES=ON \
 -D INSTALL_PYTHON_EXAMPLES=ON \
 -D BUILD_EXAMPLES=ON \
 -D CMAKE_INSTALL_PREFIX=/usr/local \
 -D WITH_V4L=ON ..
+
 
 sudo make            
 
@@ -120,7 +131,7 @@ export PKG_CONFIG_PATH
 
 sudo shutdown -r now
 
-
+Одоо сан суусан эсэхийг шалгана.
 python                      
 >>> import cv2
 >>> cv2.__version__ '3.0.0' 
@@ -128,3 +139,4 @@ python
 
 
 
+Дуусаа.
