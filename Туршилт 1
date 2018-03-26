@@ -1,8 +1,10 @@
+#Sabguudyg oruulah
 import cv2
 import numpy as np
 import os
 
 def main():
+#
     imgOriginal = cv2.imread("image1.png")  
 
     if imgOriginal is None:                           
